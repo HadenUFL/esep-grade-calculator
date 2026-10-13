@@ -3,49 +3,46 @@ package esepunittests
 import "testing"
 
 func TestGetGradeA(t *testing.T) {
-	expected_value := "A"
+	want := "A"
+	calculator := NewGradeCalculator()
 
-	gradeCalculator := NewGradeCalculator()
+	calculator.AddGrade("open source assignment", 100, Assignment)
+	calculator.AddGrade("exam 1", 100, Exam)
+	calculator.AddGrade("essay on ai ethics", 100, Essay)
 
-	gradeCalculator.AddGrade("open source assignment", 100, Assignment)
-	gradeCalculator.AddGrade("exam 1", 100, Exam)
-	gradeCalculator.AddGrade("essay on ai ethics", 100, Essay)
+	got := calculator.GetFinalGrade()
 
-	actual_value := gradeCalculator.GetFinalGrade()
-
-	if expected_value != actual_value {
-		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
+	if got != want {
+		t.Errorf("GetFinalGrade() = %q, want %q", got, want)
 	}
 }
 
 func TestGetGradeB(t *testing.T) {
-	expected_value := "B"
+	want := "B"
+	calculator := NewGradeCalculator()
 
-	gradeCalculator := NewGradeCalculator()
+	calculator.AddGrade("open source assignment", 80, Assignment)
+	calculator.AddGrade("exam 1", 81, Exam)
+	calculator.AddGrade("essay on ai ethics", 85, Essay)
 
-	gradeCalculator.AddGrade("open source assignment", 80, Assignment)
-	gradeCalculator.AddGrade("exam 1", 81, Exam)
-	gradeCalculator.AddGrade("essay on ai ethics", 85, Essay)
+	got := calculator.GetFinalGrade()
 
-	actual_value := gradeCalculator.GetFinalGrade()
-
-	if expected_value != actual_value {
-		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
+	if got != want {
+		t.Errorf("GetFinalGrade() = %q, want %q", got, want)
 	}
 }
 
 func TestGetGradeF(t *testing.T) {
-	expected_value := "F"
+	want := "F"
+	calculator := NewGradeCalculator()
 
-	gradeCalculator := NewGradeCalculator()
+	calculator.AddGrade("open source assignment", 50, Assignment)
+	calculator.AddGrade("exam 1", 45, Exam)
+	calculator.AddGrade("essay on ai ethics", 40, Essay)
 
-	gradeCalculator.AddGrade("open source assignment", 100, Assignment)
-	gradeCalculator.AddGrade("exam 1", 95, Exam)
-	gradeCalculator.AddGrade("essay on ai ethics", 91, Essay)
+	got := calculator.GetFinalGrade()
 
-	actual_value := gradeCalculator.GetFinalGrade()
-
-	if expected_value != actual_value {
-		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
+	if got != want {
+		t.Errorf("GetFinalGrade() = %q, want %q", got, want)
 	}
 }
